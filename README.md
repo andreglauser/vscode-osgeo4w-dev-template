@@ -21,7 +21,8 @@
 - [open_vscode.cmd](open_vscode.cmd) : Opens VS Code in current directory with OsGeo4W and QGIS-LTR environment settings.
 - [.vscode](/.vscode/) : Important VS Code and Debugger settings.
 - [.pylintrc](.pylintrc#L28-L31) : Settings for pylint (extension-pkg-whitelist=PyQt5,qgis)
-- [hello.py](hello.py) : Shows import from qgis and PyQt5
+- [example_python.py](example_python.py) : Shows usage of qgis.core and PyQt5
+- [example_gdal.cmd](example_gdal.cmd) : Shows usage of gdal
 
 ---------------------------------------------------------------------------------------
 
