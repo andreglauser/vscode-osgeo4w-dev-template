@@ -4,10 +4,17 @@
 
 ...this template is work in progress and not tested seriously.
 
-## Requirements
+## Requirements / Installation
 
-- [OSGeo4W Network Installer (64 bit)](https://www.qgis.org/en/site/forusers/download.html)
+- OSGeo4W Network Installer (64 bit) [ [Download](https://www.qgis.org/en/site/forusers/download.html) ]
   - QGIS LTR
+- Visual Studio Code [ [Download](https://code.visualstudio.com/Download) | [Documentation](https://code.visualstudio.com/docs) ]
+- QGIS Plugins for plugin-creation and debugging
+  - Plugin Builder 3 [ [GitHub](http://g-sherman.github.io/Qgis-Plugin-Builder/) | [QGIS](https://plugins.qgis.org/plugins/pluginbuilder3/) ]
+  - debugvs-Plugin [ [GitHub](https://github.com/lmotta/debug_vs_plugin/wiki) | [QGIS](https://plugins.qgis.org/plugins/debug_vs) ]
+  - Python debugger package for use Visual Studio Code [ [GitHub](https://github.com/microsoft/ptvsd) ]  
+  --> ```pip3 install ptvsd``` inside VS Code terminal
+  - Plugin Reloader [ [GitHub](https://github.com/borysiasty/plugin_reloader) | [QGIS](https://plugins.qgis.org/plugins/plugin_reloader) ] (flagged as experimental)
 
 ## Important Files
 
@@ -22,18 +29,17 @@
 
 ### Create Plugin
 
-Create Plugin with **Plugin Builder 3** [ [GitHub]() | [QGIS](https://plugins.qgis.org/plugins/pluginbuilder3/) ] inside ```%appdata%\QGIS\QGIS3\profiles\default\python\plugins```
+Create Plugin with **Plugin Builder 3** inside ```%appdata%\QGIS\QGIS3\profiles\default\python\plugins```
 
 ### Debugging
 
-1. Install debugvs-Plugin [ [GitHub](https://github.com/lmotta/debug_vs_plugin/wiki) | [QGIS](https://plugins.qgis.org/plugins/debug_vs) ]  in QGIS
-2. Install the Python debugger package for use Visual Studio Code with ```pip3 install ptvsd``` (Works with Terminal inside VS Code)
-3. Enable Debug for Visual Studio in QGIS
-4. Start Debugger ```Python: Remote Attach```
-5. Run Plugin-functions from inside QGIS
+1. Install and enable debugvs-Plugin and ptvsd
+2. Enable Debug for Visual Studio in QGIS (Button in QGIS)
+3. Start Debugger ```Python: Remote Attach``` inside VS Code
+4. Run Plugin-functions from inside QGIS and use breakpoints inside VS Code.
 
 ### Make and reload Changes
 
-1. Search & Install QGIS-Plugin **Plugin Reloader** [[GitHub](https://github.com/borysiasty/plugin_reloader) | [QGIS](https://plugins.qgis.org/plugins/plugin_reloader) ] (flagged as experimental)
-2. Make changes inside Plugin and reload it.
-3. If the order of the toolbars inside QGIS gets messed up, reload it again.
+1. Make changes inside Plugin and reload it with the Plugin Reloader.
+2. If the order of the toolbars inside QGIS gets messed up, reload it again.
+3. Test the changes.
