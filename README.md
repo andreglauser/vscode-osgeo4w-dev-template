@@ -13,8 +13,9 @@
   - Plugin Builder 3 [ [GitHub](http://g-sherman.github.io/Qgis-Plugin-Builder/) | [QGIS](https://plugins.qgis.org/plugins/pluginbuilder3/) ]
   - debugvs-Plugin [ [GitHub](https://github.com/lmotta/debug_vs_plugin/wiki) | [QGIS](https://plugins.qgis.org/plugins/debug_vs) ]
   - Python debugger package for use Visual Studio Code [ [GitHub](https://github.com/microsoft/ptvsd) ]  
-  --> ```pip3 install ptvsd``` inside VS Code terminal
+  --> `python3 -m pip install --upgrade ptvsd` inside VS Code terminal
   - Plugin Reloader [ [GitHub](https://github.com/borysiasty/plugin_reloader) | [QGIS](https://plugins.qgis.org/plugins/plugin_reloader) ] (flagged as experimental)
+- pb_tools `python3 -m pip install --upgrade pb_tool`
 
 ## Important Files
 
@@ -28,19 +29,40 @@
 
 ## Common Developing Tasks for Plugins
 
+### Useful Tools / Informations
+
+- [pb_tool (Plugin Builder Tool)](http://g-sherman.github.io/plugin_build_tool/)
+- [Quick Guide to Getting Started with PyQGIS 3 on Windows](http://spatialgalaxy.net/2018/02/13/quick-guide-to-getting-started-with-pyqgis-3-on-windows/)
+
 ### Create Plugin
 
-Create Plugin with **Plugin Builder 3** inside ```%appdata%\QGIS\QGIS3\profiles\default\python\plugins```
+- Create Plugin with **Plugin Builder 3** inside this directory.
+- Edit the new created `pb_tool.cfg` and define the plugin_path for the deploy (real path whitout %appdata%): `%appdata%\QGIS\QGIS3\profiles\default\python\plugins`. It be a good idea to work in a clean qgis-profile.
+- run `pb_tool compile` or `pyrcc5 -o resources.py resources.qrc`
 
 ### Debugging
 
-1. Install and enable debugvs-Plugin and ptvsd
-2. Enable Debug for Visual Studio in QGIS (Button in QGIS)
-3. Start Debugger ```Python: Remote Attach``` inside VS Code
-4. Run Plugin-functions from inside QGIS and use breakpoints inside VS Code.
+1. Define the remoteRoot path-mappings in the debugger-settings `.vscode\settings.json`
+2. Install and enable debugvs-Plugin and ptvsd
+3. Enable Debug for Visual Studio in QGIS (Button in QGIS)
+4. Start Debugger `Python: Remote Attach` inside VS Code
+5. Run Plugin-functions from inside QGIS and use breakpoints inside VS Code.
 
 ### Make and reload Changes
 
-1. Make changes inside Plugin and reload it with the Plugin Reloader.
-2. If the order of the toolbars inside QGIS gets messed up, reload it again.
-3. Test the changes.
+1. Make changes inside Plugin
+2. run `pb_tool deploy --no-confirm` and the plugin gets deployed to the qgis plugin-folder
+3. reload it with the Plugin Reloader.
+4. If the order or layout of the toolbars inside QGIS gets messed up, reload it again.
+5. Test the changes.
+
+### Known difficulties
+
+pb_tool compile or pyrcc5 throws a pyt4 error -> load environments
+
+``` cmd
+rem load neccesary envs
+o4w_env
+py3_env
+qt5_env
+```
