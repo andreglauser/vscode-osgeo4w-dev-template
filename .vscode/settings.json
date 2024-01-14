@@ -1,6 +1,3 @@
 {
-    "python.pythonPath": "C:/OSGeo4W64/apps/Python37/python.exe",
-    "python.jediEnabled": true,
-    "python.linting.pylintEnabled": true,
-    "python.linting.enabled": true
+    "python.defaultInterpreterPath": "C:/OSGeo4W/apps/Python39/python.exe",
 }
