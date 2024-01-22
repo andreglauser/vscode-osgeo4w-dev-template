@@ -1,35 +1,40 @@
-
+"Checks if modules are available"
+import logging
 
 
 def main():
+    logging.basicConfig(level=logging.INFO)
+
     try:
         import qgis.core
+
         qgis_version = qgis.core.Qgis.QGIS_VERSION
-        print("QGIS {} is available".format(qgis_version))
+        logging.info("QGIS {} is available".format(qgis_version))
     except ImportError:
-        print("Import of QGIS failed")
+        logging.error("Import of QGIS failed")
 
     try:
         import PyQt5
+
         qt_version = PyQt5.QtCore.QT_VERSION_STR
-        print("PyQt5 {} is available".format(qt_version))
-    except ImportError:
-        print("Import of PyQt5 failed")
+        logging.info("PyQt5 {} is available".format(qt_version))
+    except (ImportError, AttributeError):
+        logging.errore("Import of PyQt5 failed")
 
     try:
         from osgeo import gdal
 
         gdal_version = gdal.__version__
-        print("GDAL {} is available".format(gdal_version))
+        logging.info("GDAL {} is available".format(gdal_version))
     except ImportError:
-        print("Import of GDAL from OSGEO failed")
+        logging.error("Import of GDAL from OSGEO failed")
 
     try:
         from osgeo import ogr
 
-        print("OGR is available")
+        logging.info("OGR is available with {} Drivers".format(ogr.GetDriverCount()))
     except ImportError:
-        print("Import of OGR from OSGEO failed")
+        logging.error("Import of OGR from OSGEO failed")
 
 
 if __name__ == "__main__":
