@@ -66,3 +66,9 @@ o4w_env
 py3_env
 qt5_env
 ```
+
+If debugger throws an error like `Error while enumerating installed packages` update `importlib-metadata` with the following command in the osgeo4w shell:
+
+```cmd
+python -m pip install --upgrade importlib-metadata
+```
