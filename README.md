@@ -1,10 +1,38 @@
-# VS Code OsGeo4W Template with QGIS LTR
+# OSGeo4W Python Project-Template with QGIS LTR, uv and VS Code
 
-**How to start? Click [open_vscode.cmd](open_vscode.cmd)**
+Template for the creation of virtual environments for the use of [OSGeo4W](https://www.qgis.org/download/) and QGIS-LTR Python functionalities with [uv](https://docs.astral.sh/uv/).
+
+## How to use it
+
+Create the virtual environment with uv for simple management of additional dependencies. After executing the following commands reopen the terminal or restart VS Code. If the setup is successful [example_python.py](example_python.py) will execute without error messages.
+
+```cmd
+SET OSGEO_ROOT=C:\OSGeo4W
+SET OSGEO_PYTHON=%OSGEO_ROOT%\apps\Python312\python.exe
+
+rem To enable system site packages the venv has to be created explicitly
+uv venv --system-site-packages --python %OSGEO_PYTHON%
+
+rem Adds the QGIS LTR directories to the virtual environment
+echo %OSGEO_ROOT%\apps\qgis-ltr\python > .venv\qgis-ltr.pth
+echo %OSGEO_ROOT%\apps\qgis-ltr\python\plugins >> .venv\qgis-ltr.pth
+
+rem before syncing additional dependencies
+uv sync --dev
+```
+
+For the usage of the functionalities from the `OSGeo4W Shell` check in [.vscode\settings.json](.vscode\settings.json) the path settings and modify it if `OSGeo4W` in the default location.
+
 
 ...this template is work in progress and not tested seriously.
 
-## Requirements / Installation
+### Important Files
+
+- [.vscode](/.vscode/) : Important VS Code and Debugger settings.
+- [example_python.py](example_python.py) : Shows usage of qgis.core and PyQt5
+- [example_gdal.cmd](example_gdal.cmd) : Shows usage of gdal
+
+## Recommended Installations
 
 - OSGeo4W Network Installer (64 bit) [ [Download](https://www.qgis.org/en/site/forusers/download.html) ]
   - QGIS LTR
@@ -17,15 +45,6 @@
   - Plugin Reloader [ [GitHub](https://github.com/borysiasty/plugin_reloader) | [QGIS](https://plugins.qgis.org/plugins/plugin_reloader) ] (flagged as experimental)
 - pb_tools `python3 -m pip install --upgrade pb_tool`
 
-## Important Files
-
-- [open_vscode.cmd](open_vscode.cmd) : Opens VS Code in current directory with OsGeo4W and QGIS-LTR environment settings.
-- [.vscode](/.vscode/) : Important VS Code and Debugger settings.
-- [.pylintrc](.pylintrc#L28-L31) : Settings for pylint (extension-pkg-whitelist=PyQt5,qgis)
-- [example_python.py](example_python.py) : Shows usage of qgis.core and PyQt5
-- [example_gdal.cmd](example_gdal.cmd) : Shows usage of gdal
-
----------------------------------------------------------------------------------------
 
 ## Common Developing Tasks for Plugins
 
@@ -37,7 +56,7 @@
 ### Create Plugin
 
 - Create Plugin with **Plugin Builder 3** inside this directory.
-- Edit the new created `pb_tool.cfg` and define the plugin_path for the deploy (real path whitout %appdata%): `%appdata%\QGIS\QGIS3\profiles\default\python\plugins`. It be a good idea to work in a clean qgis-profile.
+- Edit the new created `pb_tool.cfg` and define the plugin_path for the deploy (real path without %appdata%): `%appdata%\QGIS\QGIS3\profiles\default\python\plugins`. It be a good idea to work in a clean qgis-profile.
 - run `pb_tool compile` or `pyrcc5 -o resources.py resources.qrc`
 
 ### Debugging
@@ -61,7 +80,7 @@
 pb_tool compile or pyrcc5 throws a pyt4 error -> load environments
 
 ``` cmd
-rem load neccesary envs
+rem load necessary envs
 o4w_env
 py3_env
 qt5_env
