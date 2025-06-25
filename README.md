@@ -26,14 +26,14 @@ uv init
 
 For the usage of the functionalities from the `OSGeo4W Shell` check in [.vscode\settings.json](.vscode\settings.json) the path settings and modify it if `OSGeo4W` in the default location.
 
-
 ...this template is work in progress and not tested seriously.
 
 ### Important Files
 
 - [.vscode](/.vscode/) : Important VS Code and Debugger settings.
 - [example_python.py](example_python.py) : Shows usage of qgis.core and PyQt5
-- [example_gdal.cmd](example_gdal.cmd) : Shows usage of gdal
+- [example_gdal.cmd](example_gdal.cmd) : Shows usage of gdal in cmd
+- [example_gdal.ps1](example_gdal.ps1) : Shows usage of gdal in powershell
 
 ## Recommended Installations
 
