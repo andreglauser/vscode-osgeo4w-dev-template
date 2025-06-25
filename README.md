@@ -17,8 +17,11 @@ rem Adds the QGIS LTR directories to the virtual environment
 echo %OSGEO_ROOT%\apps\qgis-ltr\python > .venv\qgis-ltr.pth
 echo %OSGEO_ROOT%\apps\qgis-ltr\python\plugins >> .venv\qgis-ltr.pth
 
-rem before syncing additional dependencies
+rem use the dependencies from the existing pyproject.toml
+rem Project Metadata in pyproject.toml has to be changed manually
 uv sync --dev
+rem OR create a new project and pyproject.toml whitout predefined dependencies
+uv init
 ```
 
 For the usage of the functionalities from the `OSGeo4W Shell` check in [.vscode\settings.json](.vscode\settings.json) the path settings and modify it if `OSGeo4W` in the default location.
